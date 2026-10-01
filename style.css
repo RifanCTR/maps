@@ -338,8 +338,13 @@ html, body {
   font-size: 14px;
   color: #5f6368;
   height: calc(100% - 60px);
-  overflow-y: auto;
-  touch-action: pan-y !important;
+  
+  /* PENGATURAN Wajib BISA SCROLL DI HP */
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important; /* Smooth scroll khusus iOS & Android */
+  touch-action: pan-y !important; /* Izinkan gesture swipe atas-bawah di HP */
+  overscroll-behavior-y: contain; /* Biar scroll isi toko ga bentrok sama drag sheet */
+  
   display: flex;
   flex-direction: column;
   gap: 16px;
