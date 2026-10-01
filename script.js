@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (bottomRightFabs) {
           bottomRightFabs.style.transform = `translateY(150px)`;
           bottomRightFabs.style.opacity = '0';
-          bottomRightFabs.style.pointerEvents = 'none'; // Matikan klik saat sembunyi
+          bottomRightFabs.style.pointerEvents = 'none';
         }
         if (locationDot) {
           locationDot.style.transform = `translateY(150px)`;
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (bottomRightFabs) {
           bottomRightFabs.style.transform = `translateY(0px)`;
           bottomRightFabs.style.opacity = '1';
-          bottomRightFabs.style.pointerEvents = 'auto'; // Aktifkan klik
+          bottomRightFabs.style.pointerEvents = 'auto';
         }
         if (locationDot) {
           locationDot.style.transform = `translateY(0px)`;
@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    // Listener Touch Event (HP)
+    // Listener Touch Event (HANYA PADA HEADER/HANDLENYA)
     dragHandleContainer.addEventListener('touchstart', onDragStart, { passive: false });
     window.addEventListener('touchmove', onDragMove, { passive: false });
     window.addEventListener('touchend', onDragEnd);
@@ -211,7 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // =============================================================
   // 5. CHIP KATEGORI (UBAH AKTIF & GESER MOUSE)
   // =============================================================
-  // A. Pindah Status Aktif Chip
   chips.forEach(chip => {
     chip.addEventListener('click', () => {
       chips.forEach(c => c.classList.remove('active'));
@@ -219,32 +218,56 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // B. Drag Scroll Kategori Menggunakan Mouse (Desktop)
-  if (categoryScroll) {
+  // =============================================================
+  // 6. FITUR MOUSE DRAG SCROLL UNTUK SEMUA ELEMEN HORIZONTAL
+  // (Category Scroll, Photo Gallery, & Store Actions)
+  // =============================================================
+  const makeHorizontalScrollable = (container) => {
+    if (!container) return;
     let isDown = false;
     let startX;
     let scrollLeft;
 
-    categoryScroll.addEventListener('mousedown', (e) => {
+    container.addEventListener('mousedown', (e) => {
       isDown = true;
-      startX = e.pageX - categoryScroll.offsetLeft;
-      scrollLeft = categoryScroll.scrollLeft;
+      container.style.cursor = 'grabbing';
+      startX = e.pageX - container.offsetLeft;
+      scrollLeft = container.scrollLeft;
     });
 
-    categoryScroll.addEventListener('mouseleave', () => { isDown = false; });
-    categoryScroll.addEventListener('mouseup', () => { isDown = false; });
+    container.addEventListener('mouseleave', () => {
+      isDown = false;
+      container.style.cursor = 'grab';
+    });
 
-    categoryScroll.addEventListener('mousemove', (e) => {
+    container.addEventListener('mouseup', () => {
+      isDown = false;
+      container.style.cursor = 'grab';
+    });
+
+    container.addEventListener('mousemove', (e) => {
       if (!isDown) return;
       e.preventDefault();
-      const x = e.pageX - categoryScroll.offsetLeft;
-      const walk = (x - startX) * 2;
-      categoryScroll.scrollLeft = scrollLeft - walk;
+      const x = e.pageX - container.offsetLeft;
+      const walk = (x - startX) * 2; // Kecepatan scroll
+      container.scrollLeft = scrollLeft - walk;
     });
-  }
+  };
+
+  // Terapkan ke Category Scroll
+  makeHorizontalScrollable(categoryScroll);
+
+  // Terapkan ke semua Galeri Foto & Tombol Aksi Toko
+  document.querySelectorAll('.photo-gallery').forEach(gallery => {
+    makeHorizontalScrollable(gallery);
+  });
+
+  document.querySelectorAll('.store-actions').forEach(actions => {
+    makeHorizontalScrollable(actions);
+  });
 
   // =============================================================
-  // 6. BOTTOM NAV SWITCH TAB
+  // 7. BOTTOM NAV SWITCH TAB
   // =============================================================
   navItems.forEach(item => {
     item.addEventListener('click', (e) => {
@@ -255,3 +278,23 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+function generateStarHTML(rating) {
+  const fullStars = Math.floor(rating); // Ambil angka bulat (misal 4.5 -> 4)
+  const hasHalfStar = (rating % 1) >= 0.5; // Cek apakah ada sisa 0.5 ke atas
+  let html = '';
+
+  // Tambah Bintang Full
+  for (let i = 0; i < fullStars; i++) {
+    html += `<img src="assets/star-full.png" alt="star" class="star-icon">`;
+  }
+
+  // Tambah Bintang Setengah jika ada
+  if (hasHalfStar) {
+    html += `<img src="assets/star-half.png" alt="star" class="star-icon">`;
+  }
+
+  return html;
+}
+
+// Contoh Penggunaan:
+// document.querySelector('.stars-img').innerHTML = generateStarHTML(4.5);

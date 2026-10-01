@@ -25,8 +25,7 @@
       <!-- Search Bar Floating -->
       <div class="search-bar">
         <img src="images/icon_search.png" class="search-icon" alt="Cari">
-        <!-- SESUDAHNYA (READONLY DIHAPUS + TAMBAH ID) -->
-<input type="text" id="searchInput" placeholder="Telusuri di sini" autocomplete="off">
+        <input type="text" id="searchInput" placeholder="Telusuri di sini" autocomplete="off">
         <div class="search-actions">
           <img src="images/icon_mic.png" alt="Mic" class="action-icon">
           <img src="images/icon_lens.png" alt="Lens" class="action-icon">
@@ -74,7 +73,7 @@
       </button>
       
       <div class="bottom-right-fabs">
-        <button class="fab btn-my-location" title="Lokasi Saya">
+        <button class="fab btn-my-location" id="btnMyLocation" title="Lokasi Saya">
           <img src="images/icon_my_location.png" alt="Lokasi Saya">
         </button>
         <button class="fab btn-direction" title="Petunjuk Arah">
@@ -83,53 +82,197 @@
       </div>
     </div>
 
-    <!-- Bottom Sheet / Drawer Informasi (Suasana Lokal) -->
+    <!-- Bottom Sheet / Drawer Informasi (Trending di Maps - 3 Toko) -->
     <div class="bottom-sheet" id="bottomSheet">
       <div class="drag-handle-container" id="dragHandle">
         <div class="drag-handle"></div>
         <div class="sheet-header">
-          <h2>Suasana lokal</h2>
+          <div class="sheet-title">
+            <span class="icon-megaphone">11</span>
+            <h2>Trending di Maps</h2>
+          </div>
+          <button class="btn-close">&times;</button>
         </div>
       </div>
 
       <div class="sheet-content">
-        <div class="content-card">
-          <h3>Rekomendasi Tempat</h3>
-          <p>Jelajahi berbagai kuliner, tempat wisata, dan area populer di sekitar Jawa Barat.</p>
+        
+        <!-- TOKO 1 -->
+        <div class="store-card">
+          <!-- 4 Foto Bisa Di-Swipe Horizontal -->
+          <div class="photo-gallery">
+            <div class="photo-item">
+              <img src="https://picsum.photos/id/1060/200/200" alt="Foto 1">
+              <span class="badge">2 hari lalu</span>
+            </div>
+            <div class="photo-item"><img src="https://picsum.photos/id/1084/200/200" alt="Foto 2"></div>
+            <div class="photo-item"><img src="https://picsum.photos/id/1025/200/200" alt="Foto 3"></div>
+            <div class="photo-item"><img src="https://picsum.photos/id/1062/200/200" alt="Foto 4"></div>
+          </div>
+
+          <div class="store-info">
+            <h3 class="store-name">Cendol Sri Rahayu Puspitek</h3>
+            <div class="store-rating">
+              <span class="score">4,4</span>
+              <span class="stars">★★★★★</span>
+              <span class="reviews">(245) · 25 km</span>
+            </div>
+            <div class="store-meta">Indonesia · Rp 1–25.000</div>
+            <div class="store-status"><span class="open">Buka</span> · Tutup pukul 22.50</div>
+          </div>
+
+          <!-- Deretan Tombol Ikon Aksi (Bisa Di-Swipe Horizontal) -->
+          <div class="store-actions">
+            <button class="btn-pill">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M22.43 10.59l-9.01-9.01c-.75-.75-2.07-.75-2.83 0l-9 9c-.78.78-.78 2.04 0 2.82l9 9c.39.39.9.58 1.41.58.51 0 1.02-.19 1.41-.58l8.99-8.99c.79-.76.79-2.03.03-2.82zm-10.42 10.4l-8.99-9 8.99-8.99 9 8.99-9 9.01zM12.5 8h-2v3.5H7v2h3.5V17h2v-3.5H16v-2h-3.5V8z"/></svg>
+              <span>Rute</span>
+            </button>
+            <button class="btn-pill">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+              <span>Menu</span>
+            </button>
+            <button class="btn-pill">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+              <span>Telepon</span>
+            </button>
+            <button class="btn-pill">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
+              <span>Bagikan</span>
+            </button>
+            <button class="btn-pill">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg>
+              <span>Simpan</span>
+            </button>
+          </div>
         </div>
+
+        <!-- TOKO 2 -->
+        <div class="store-card">
+          <!-- 4 Foto Bisa Di-Swipe Horizontal -->
+          <div class="photo-gallery">
+            <div class="photo-item"><img src="https://picsum.photos/id/431/200/200" alt="Foto 1"></div>
+            <div class="photo-item">
+              <img src="https://picsum.photos/id/326/200/200" alt="Foto 2">
+              <span class="badge">14 hari lalu</span>
+            </div>
+            <div class="photo-item"><img src="https://picsum.photos/id/425/200/200" alt="Foto 3"></div>
+            <div class="photo-item"><img src="https://picsum.photos/id/1060/200/200" alt="Foto 4"></div>
+          </div>
+
+          <div class="store-info">
+            <h3 class="store-name">Sedulur Milk Bar</h3>
+            <div class="store-rating">
+              <span class="score">5,0</span>
+              <span class="stars">★★★★★</span>
+              <span class="reviews">(14) · 24 km</span>
+            </div>
+            <div class="store-meta">Kedai Kopi · Rp 1–25.000</div>
+            <div class="store-status"><span class="open">Buka</span> · Tutup pukul 21.00</div>
+          </div>
+
+          <!-- Deretan Tombol Ikon Aksi (Bisa Di-Swipe Horizontal) -->
+          <div class="store-actions">
+            <button class="btn-pill">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M22.43 10.59l-9.01-9.01c-.75-.75-2.07-.75-2.83 0l-9 9c-.78.78-.78 2.04 0 2.82l9 9c.39.39.9.58 1.41.58.51 0 1.02-.19 1.41-.58l8.99-8.99c.79-.76.79-2.03.03-2.82zm-10.42 10.4l-8.99-9 8.99-8.99 9 8.99-9 9.01zM12.5 8h-2v3.5H7v2h3.5V17h2v-3.5H16v-2h-3.5V8z"/></svg>
+              <span>Rute</span>
+            </button>
+            <button class="btn-pill">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+              <span>Menu</span>
+            </button>
+            <button class="btn-pill">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+              <span>Telepon</span>
+            </button>
+            <button class="btn-pill">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
+              <span>Bagikan</span>
+            </button>
+            <button class="btn-pill">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg>
+              <span>Simpan</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- TOKO 3 -->
+        <div class="store-card">
+          <!-- 4 Foto Bisa Di-Swipe Horizontal -->
+          <div class="photo-gallery">
+            <div class="photo-item"><img src="https://picsum.photos/id/292/200/200" alt="Foto 1"></div>
+            <div class="photo-item"><img src="https://picsum.photos/id/102/200/200" alt="Foto 2"></div>
+            <div class="photo-item"><img src="https://picsum.photos/id/139/200/200" alt="Foto 3"></div>
+            <div class="photo-item"><img src="https://picsum.photos/id/225/200/200" alt="Foto 4"></div>
+          </div>
+
+          <div class="store-info">
+            <h3 class="store-name">Labakers</h3>
+            <div class="store-rating">
+              <span class="score">4,8</span>
+              <span class="stars">★★★★★</span>
+              <span class="reviews">(89) · 18 km</span>
+            </div>
+            <div class="store-meta">Toko Roti · Rp 25–50.000</div>
+            <div class="store-status"><span class="open">Buka</span> · Tutup pukul 20.00</div>
+          </div>
+
+          <!-- Deretan Tombol Ikon Aksi (Bisa Di-Swipe Horizontal) -->
+          <div class="store-actions">
+            <button class="btn-pill">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M22.43 10.59l-9.01-9.01c-.75-.75-2.07-.75-2.83 0l-9 9c-.78.78-.78 2.04 0 2.82l9 9c.39.39.9.58 1.41.58.51 0 1.02-.19 1.41-.58l8.99-8.99c.79-.76.79-2.03.03-2.82zm-10.42 10.4l-8.99-9 8.99-8.99 9 8.99-9 9.01zM12.5 8h-2v3.5H7v2h3.5V17h2v-3.5H16v-2h-3.5V8z"/></svg>
+              <span>Rute</span>
+            </button>
+            <button class="btn-pill">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+              <span>Menu</span>
+            </button>
+            <button class="btn-pill">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+              <span>Telepon</span>
+            </button>
+            <button class="btn-pill">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
+              <span>Bagikan</span>
+            </button>
+            <button class="btn-pill">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg>
+              <span>Simpan</span>
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
 
- 
-<!-- Bottom Navigation Bar -->
-<div class="bottom-nav">
-  <!-- Menu 1: Jelajahi -->
-  <a href="#" class="nav-item active">
-    <div class="nav-icon-wrapper">
-      <img src="images/icon_explore_black.png" class="icon-inactive" alt="Jelajahi">
-      <img src="images/icon_explore.png" class="icon-active" alt="Jelajahi">
-    </div>
-    <span>Jelajahi</span>
-  </a>
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+      <!-- Menu 1: Jelajahi -->
+      <a href="#" class="nav-item active">
+        <div class="nav-icon-wrapper">
+          <img src="images/icon_explore_black.png" class="icon-inactive" alt="Jelajahi">
+          <img src="images/icon_explore.png" class="icon-active" alt="Jelajahi">
+        </div>
+        <span>Jelajahi</span>
+      </a>
 
-  <!-- Menu 2: Anda -->
-  <a href="#" class="nav-item">
-    <div class="nav-icon-wrapper">
-      <img src="images/icon_you_black.png" class="icon-inactive" alt="Anda">
-      <img src="images/icon_you.png" class="icon-active" alt="Anda">
-    </div>
-    <span>Anda</span>
-  </a>
+      <!-- Menu 2: Anda -->
+      <a href="#" class="nav-item">
+        <div class="nav-icon-wrapper">
+          <img src="images/icon_you_black.png" class="icon-inactive" alt="Anda">
+          <img src="images/icon_you.png" class="icon-active" alt="Anda">
+        </div>
+        <span>Anda</span>
+      </a>
 
-  <!-- Menu 3: Kontribusi -->
-  <a href="#" class="nav-item">
-    <div class="nav-icon-wrapper">
-      <img src="images/icon_contribute_black.png" class="icon-inactive" alt="Kontribusi">
-      <img src="images/icon_contribute.png" class="icon-active" alt="Kontribusi">
+      <!-- Menu 3: Kontribusi -->
+      <a href="#" class="nav-item">
+        <div class="nav-icon-wrapper">
+          <img src="images/icon_contribute_black.png" class="icon-inactive" alt="Kontribusi">
+          <img src="images/icon_contribute.png" class="icon-active" alt="Kontribusi">
+        </div>
+        <span>Kontribusi</span>
+      </a>
     </div>
-    <span>Kontribusi</span>
-  </a>
-</div>
 
   </div>
 
