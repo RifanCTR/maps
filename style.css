@@ -131,8 +131,33 @@ html, body {
   flex-shrink: 0;
 }
 
-/* KATEGORI CHIPS (SCROLL HORIZONTAL) */
+/* 1. Hapus padding dari top-overlay */
+/* 1. Paksa top-overlay melebar 100% tanpa padding */
+.top-overlay {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  width: 100%;
+  z-index: 5;
+  padding: 0 !important;
+}
+
+/* 2. Jaga search bar tetap punya jarak dari pinggir layar */
+.search-bar {
+  background: #ffffff;
+  height: 52px;
+  border-radius: 28px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px 0 16px;
+  margin: 0 14px; /* Jarak search bar kiri-kanan */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+/* 3. Bikin area scroll chip nempel mentok sampai ujung kanan */
 .category-scroll {
+  width: 100%;
   display: flex;
   gap: 8px;
   margin-top: 10px;
@@ -141,9 +166,15 @@ html, body {
   scrollbar-width: none;
   -ms-overflow-style: none;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 4px;
+  padding: 0 0 4px 14px !important; /* Kiri 14px, Kanan 0 (mentok layar) */
   cursor: grab;
   touch-action: pan-x;
+}
+
+/* 4. Trik biar chip terakhir pas digeser mentok tetap ada jarak manis di kanan */
+.category-scroll::after {
+  content: '';
+  padding-right: 6px;
 }
 
 .category-scroll::-webkit-scrollbar {
