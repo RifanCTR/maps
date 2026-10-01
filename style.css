@@ -6,34 +6,37 @@
   user-select: none;
 }
 
-/* KUNCI TOTAL BODY & HTML */
+/* BASE HTML & BODY */
 html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  position: fixed;
-  touch-action: none;
-  background-color: #121212;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  touch-action: manipulation;
+  background-color: #ffffff;
 }
 
-/* Container Layar HP */
+/* CONTAINER UTAMA (AUTO RESPONSIF) */
 .phone-container {
   width: 100%;
-  max-width: 390px;
-  height: 100%;
-  max-height: 844px;
-  background-color: #8ed0e0;
+  height: 100dvh; /* Menggunakan dvh agar pas dengan dynamic viewport HP */
+  max-width: 480px; /* Di PC/Laptop tampil rapi ala HP */
+  margin: 0 auto; /* Posisikan ke tengah layar PC */
   position: relative;
   overflow: hidden;
-  border-radius: 40px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-  border: 8px solid #2d2d2d;
+  background-color: #8ed0e0;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.15); /* Bayangan rapi saat dibuka di PC */
 }
 
-/* Peta Background */
+/* KETIKA DI BUKA DI HP (LAYAR <= 480px) */
+@media (max-width: 480px) {
+  .phone-container {
+    max-width: 100%; /* Otomatis Full Screen di HP */
+    height: 100%;
+    box-shadow: none;
+  }
+}
+
+/* PETA BACKGROUND */
 .map-wrapper {
   width: 100%;
   height: 100%;
@@ -51,20 +54,22 @@ html, body {
 
 .my-location-dot {
   position: absolute;
-  top: 78%;
-  right: 85%;
-  width: 42px;
-  height: 42px;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 36px;
+  height: 36px;
   z-index: 5;
   transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .my-location-dot img {
-  width: 90px;
-  height: 30px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
-/* Header Overhead & Search */
+/* HEADER OVERLAY & SEARCH BAR */
 .top-overlay {
   position: absolute;
   top: 14px;
@@ -102,10 +107,6 @@ html, body {
   background: transparent;
 }
 
-.search-bar input:focus {
-  outline: none;
-}
-
 .search-actions {
   display: flex;
   align-items: center;
@@ -130,7 +131,7 @@ html, body {
   flex-shrink: 0;
 }
 
-/* Kategori Filter Chips Scrollable */
+/* KATEGORI CHIPS (SCROLL HORIZONTAL) */
 .category-scroll {
   display: flex;
   gap: 8px;
@@ -165,7 +166,7 @@ html, body {
 
 .chip.active {
   background: #e8f0fe;
-  border: 1px solid blue;
+  border: 1px solid #1a73e8;
 }
 
 .chip img {
@@ -180,7 +181,7 @@ html, body {
   color: #3c4043;
 }
 
-/* Floating Action Buttons */
+/* FLOATING BUTTONS */
 .floating-buttons {
   position: absolute;
   top: 0;
@@ -212,13 +213,13 @@ html, body {
 }
 
 .btn-layer img {
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
 }
 
 .bottom-right-fabs {
   position: absolute;
-  bottom: 120px;
+  bottom: 125px;
   right: 14px;
   display: flex;
   flex-direction: column;
@@ -228,41 +229,42 @@ html, body {
 }
 
 .btn-my-location {
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   background: #ffffff;
 }
 
 .btn-my-location img {
-  width: 40px;
-  height: 40px;
+  width: 28px;
+  height: 28px;
 }
 
 .btn-direction {
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   background: #006a6f;
 }
 
 .btn-direction img {
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
 }
 
-/* Bottom Sheet */
+/* BOTTOM SHEET RESPONSIF (DINAMIS SAMA TINGGI LAYAR) */
 .bottom-sheet {
   position: absolute;
-  bottom: 60px;
+  bottom: 68px;
   left: 0;
   right: 0;
-  height: 520px;
+  height: calc(100vh - 130px);
+  max-height: 560px;
   background: #ffffff;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   z-index: 6;
   box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.15);
   transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-  transform: translateY(460px);
+  transform: translateY(calc(100% - 60px));
 }
 
 .drag-handle-container {
@@ -286,13 +288,7 @@ html, body {
   justify-content: space-between;
 }
 
-.sheet-title {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.sheet-header h2 {
+.sheet-title h2 {
   font-size: 17px;
   color: #202124;
   font-weight: 600;
@@ -312,7 +308,7 @@ html, body {
   color: #5f6368;
   height: calc(100% - 60px);
   overflow-y: auto;
-  touch-action: pan-x pan-y !important;
+  touch-action: pan-y !important;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -323,7 +319,7 @@ html, body {
   display: none;
 }
 
-/* Kartu Toko */
+/* TOKO & KARTU INFORMASI */
 .store-card {
   border-bottom: 1px solid #e8eaed;
   padding-bottom: 16px;
@@ -333,7 +329,6 @@ html, body {
   border-bottom: none;
 }
 
-/* Galeri Foto (Swipeable 4 Foto) */
 .photo-gallery {
   display: flex !important;
   flex-direction: row !important;
@@ -377,7 +372,6 @@ html, body {
   border-radius: 4px;
 }
 
-/* Detail Informasi Toko */
 .store-info {
   padding: 0 16px;
   display: flex;
@@ -391,7 +385,6 @@ html, body {
   color: #202124;
 }
 
-/* Styling Bintang PNG/JPG */
 .store-rating {
   display: flex;
   align-items: center;
@@ -427,7 +420,6 @@ html, body {
   font-weight: 600;
 }
 
-/* Tombol Aksi (Swipeable Rute, Menu, Telepon, Bagikan, Simpan) */
 .store-actions {
   display: flex !important;
   flex-direction: row !important;
@@ -462,14 +454,13 @@ html, body {
   cursor: pointer;
 }
 
-/* Styling Ikon Gambar pada Tombol Aksi */
 .btn-pill .btn-icon {
   width: 18px;
   height: 18px;
   object-fit: contain;
 }
 
-/* Bottom Navigation Bar */
+/* BOTTOM NAVIGATION BAR */
 .bottom-nav {
   position: absolute;
   bottom: 0;
@@ -540,4 +531,39 @@ html, body {
 .nav-item.active span {
   color: #1f1f1f;
   font-weight: 700;
+}
+
+/* MEDIA QUERY HP / LAYAR KECIL */
+@media (max-width: 480px) {
+  .top-overlay {
+    top: 10px;
+    padding: 0 10px;
+  }
+
+  .search-bar {
+    height: 46px;
+    padding: 0 6px 0 12px;
+  }
+
+  .chip {
+    height: 34px;
+    padding: 0 12px;
+  }
+
+  .btn-layer {
+    top: 115px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .bottom-right-fabs {
+    bottom: 110px;
+    right: 10px;
+  }
+
+  .btn-my-location, .btn-direction {
+    width: 44px;
+    height: 44px;
+  }
 }
