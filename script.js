@@ -156,11 +156,11 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('mousemove', onDragMove);
     window.addEventListener('mouseup', onDragEnd);
 
-    // KODE TAMBAHAN AGAR DAFTAR TOKO BISA DI-SCROLL DI HP
-    const sheetContent = document.querySelector('.sheet-content');
-    if (sheetContent) {
-      sheetContent.addEventListener('touchstart', (e) => {
-        e.stopPropagation();
+    // Izinkan scroll vertikal normal di dalam sheet tanpa mengabaikan gesture child
+      const sheetContent = document.querySelector('.sheet-content');
+      if (sheetContent) {
+  sheetContent.addEventListener('touchstart', (e) => {
+        // Biarkan browser menangani touch native di foto/tombol
       }, { passive: true });
     }
   }
