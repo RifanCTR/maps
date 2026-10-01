@@ -618,3 +618,15 @@ html, body {
     height: 44px;
   }
 }
+/* FIX KHUSUS TOMBOL (RUTE, MENU, DLL) BIAR BISA DI-SCROLL VERTIKAL */
+.btn-pill {
+  touch-action: auto !important; /* Bebaskan browser buat scroll vertikal */
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* MATIKAN INTERAKSI SENTUHAN DI TEKS DAN IKON DALAM TOMBOL */
+.btn-pill img,
+.btn-pill span {
+  pointer-events: none; /* Sentuhan jari langsung tembus ke tombol tanpa nyangkut di teks/ikon */
+}
