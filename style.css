@@ -6,34 +6,34 @@
   user-select: none;
 }
 
-/* KUNCI TOTAL BODY & HTML (AGAR WEB GAK BISA DI-SCROLL SAMA SEKALI) */
+/* FULL SCREEN TOTAL DI HP MAUPUN PC */
 html, body {
   width: 100%;
   height: 100%;
+  height: 100dvh;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
-  position: fixed; /* Mencegah overscroll di HP */
-  touch-action: none; /* Matikan gesture scroll/refresh bawaan browser */
-  background-color: #121212;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: fixed;
+  touch-action: none;
+  background-color: #ffffff;
 }
 
-/* Container Layar HP */
+/* Container Otomatis Mengisi 100% Layar Browser (Responsif) */
 .phone-container {
-  width: 100%;
-  max-width: 390px;
-  height: 100%;
-  max-height: 844px;
-  background-color: #8ed0e0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
   position: relative;
-  overflow: hidden; /* Konten di dalam HP tidak bisa meluber keluar */
-  border-radius: 40px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-  border: 8px solid #2d2d2d;
+  overflow: hidden;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  max-width: none !important;  /* Hapus batasan lebar HP */
+  max-height: none !important; /* Hapus batasan tinggi HP */
 }
 
-/* Peta Background */
+/* Peta Memenuhi Seluruh Layar */
 .map-wrapper {
   width: 100%;
   height: 100%;
