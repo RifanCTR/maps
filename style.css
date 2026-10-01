@@ -365,16 +365,31 @@ html, body {
   border-bottom: none;
 }
 
+/* PERBAIKAN GALERI FOTO */
 .photo-gallery {
   display: flex !important;
   flex-direction: row !important;
   flex-wrap: nowrap !important;
   overflow-x: auto !important;
   overflow-y: hidden !important;
-  touch-action: pan-x !important;
+  touch-action: pan-x pan-y !important; /* Ganti dari 'pan-x' ke 'pan-x pan-y' */
   -webkit-overflow-scrolling: touch !important;
   gap: 8px;
   padding: 0 16px 12px 16px;
+  scrollbar-width: none;
+}
+
+/* PERBAIKAN TOMBOL AKSI (RUTE, MENU, DLL) */
+.store-actions {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  touch-action: pan-x pan-y !important; /* Ganti dari 'pan-x' ke 'pan-x pan-y' */
+  -webkit-overflow-scrolling: touch !important;
+  gap: 8px;
+  padding: 12px 16px 0 16px;
   scrollbar-width: none;
 }
 
