@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>rewind_blank_gm2_36px</title>
+    <desc>Created with Sketch.</desc>
+    <g id="rewind_blank_gm2_36px" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-2" transform="translate(1.000000, 0.000000)">
+            <g id="forward_5_gm2_24px-copy" transform="translate(17.000000, 16.000000) scale(-1, 1) translate(-17.000000, -16.000000) translate(4.000000, 1.000000)" fill="#000000">
+                <g id="Group">
+                    <path d="M23.1111111,17.3040752 C23.1111111,22.7492163 18.5755556,27.1786834 13,27.1786834 C7.42444444,27.1786834 2.88888889,22.7492163 2.88888889,17.3040752 C2.88888889,11.8589342 7.42444444,7.42946708 13,7.42946708 C13.2744444,7.42946708 13.52,7.47178683 13.7944444,7.48589342 L11.2666667,9.95454545 L13.3033333,11.9435737 L19.37,6.01880878 L13.2888889,0.0799373041 L11.2522222,2.06896552 L13.8955556,4.65047022 C13.6066667,4.63636364 13.3033333,4.60815047 13,4.60815047 C5.82111111,4.60815047 0,10.2931034 0,17.3040752 C0,24.315047 5.82111111,30 13,30 C20.1788889,30 26,24.315047 26,17.3040752 L23.1111111,17.3040752 Z" id="Path"></path>
+                </g>
+            </g>
+            <polygon id="Path" points="0 0 34 0 34 34 0 34"></polygon>
+        </g>
+    </g>
+</svg>

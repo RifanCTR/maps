@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ic_crisis_fire_dark_small</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ic_crisis_fire_dark_small" fill-rule="nonzero">
+            <path d="M0,12 C0,5.388 5.388,0 12,0 C18.612,0 24,5.388 24,12 C24,18.612 18.612,24 12,24 C5.388,24 0,18.612 0,12" id="Fill-3" fill="#FAD2CF"></path>
+            <path d="M11.076,17.628 C10.848,18.084 11.064,18.636 11.496,18.864 C11.712,18.972 11.94,19.044 12.18,19.032 C16.128,18.9 18.78,14.46 14.916,9.756 C14.964,14.4 12.096,15.564 11.076,17.628" id="Fill-5" fill="#202124"></path>
+            <path d="M11.868,4.968 C11.292,6.444 10.428,7.752 9.432,8.976 C7.344,11.556 5.82,15.516 9.144,17.856 C9.144,16.068 10.656,14.508 11.7,13.2 C12.684,11.964 13.764,10.644 13.968,9.024 C14.196,7.284 13.104,6.036 11.868,4.968" id="Fill-7" fill="#202124"></path>
+        </g>
+    </g>
+</svg>

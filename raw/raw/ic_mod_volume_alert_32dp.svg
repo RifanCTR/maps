@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="32px" height="32px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">
+<title>ic/volume_alerts</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1">
+	<g id="GMM-Icons" transform="translate(-347.000000, -2873.000000)">
+		<g id="ic_x2F_volume_x5F_alerts" transform="translate(347.000000, 2873.000000)">
+			<rect id="container" fill="none" width="32" height="32"/>
+		</g>
+	</g>
+</g>
+<rect x="24" y="20" width="3" height="3"/>
+<rect x="24" y="8" width="3" height="9"/>
+<g id="Shape">
+	<path id="path-1_1_" d="M11.5,11L19,4v24l-7.5-7H5V11H11.5z M16,20.76v-9.51L12.74,14H8v4h4.74L16,20.76z"/>
+</g>
+</svg>

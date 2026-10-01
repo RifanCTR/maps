@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Maps Clone</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="phone-container">
+
+    <!-- Peta Utama (Background PNG) -->
+    <div class="map-wrapper">
+      <img src="images/map_jabar.png" alt="Peta Jawa Barat" class="map-image">
+      
+      <!-- Marker Titik Lokasi Biru -->
+      <div class="my-location-dot">
+        <img src="images/icon_location_dot.png" alt="Titik Saya">
+      </div>
+    </div>
+
+    <!-- Header Overhead Floating (Search Bar + Kategori Filter) -->
+    <div class="top-overlay">
+      <!-- Search Bar Floating -->
+      <div class="search-bar">
+        <img src="images/icon_search.png" class="search-icon" alt="Cari">
+        <!-- SESUDAHNYA (READONLY DIHAPUS + TAMBAH ID) -->
+<input type="text" id="searchInput" placeholder="Telusuri di sini" autocomplete="off">
+        <div class="search-actions">
+          <img src="images/icon_mic.png" alt="Mic" class="action-icon">
+          <img src="images/icon_lens.png" alt="Lens" class="action-icon">
+          <img src="images/avatar.png" alt="Profil" class="avatar-icon">
+        </div>
+      </div>
+
+      <!-- Category Filter Pills (Bisa Digeser) -->
+      <div class="category-scroll" id="categoryScroll">
+        <button class="chip active">
+          <img src="images/icon_ai.png" alt="Tanya Maps">
+          <span>Tanya Maps</span>
+        </button>
+        <button class="chip">
+          <img src="images/icon_restaurant.svg" alt="Restoran">
+          <span>Restoran</span>
+        </button>
+        <button class="chip">
+          <img src="images/icon_hotel.svg" alt="Hotel">
+          <span>Hotel</span>
+        </button>
+        <button class="chip">
+          <img src="images/icon_spbu.svg" alt="SPBU">
+          <span>SPBU</span>
+        </button>
+        <button class="chip">
+          <img src="images/icon_cafe.svg" alt="Kafe">
+          <span>Kafe</span>
+        </button>
+        <button class="chip">
+          <img src="images/icon_attraction.png" alt="Tempat menarik">
+          <span>Tempat menarik</span>
+        </button>
+        <button class="chip">
+          <img src="images/icon_shopping.svg" alt="Belanja">
+          <span>Belanja</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Floating Action Buttons (Kanan Atas & Bawah) -->
+    <div class="floating-buttons">
+      <button class="fab btn-layer" title="Ubah Layer">
+        <img src="images/icon_layer.png" alt="Layer">
+      </button>
+      
+      <div class="bottom-right-fabs">
+        <button class="fab btn-my-location" title="Lokasi Saya">
+          <img src="images/icon_my_location.png" alt="Lokasi Saya">
+        </button>
+        <button class="fab btn-direction" title="Petunjuk Arah">
+          <img src="images/icon_directions.png" alt="Rute">
+        </button>
+      </div>
+    </div>
+
+    <!-- Bottom Sheet / Drawer Informasi (Suasana Lokal) -->
+    <div class="bottom-sheet" id="bottomSheet">
+      <div class="drag-handle-container" id="dragHandle">
+        <div class="drag-handle"></div>
+        <div class="sheet-header">
+          <h2>Suasana lokal</h2>
+        </div>
+      </div>
+
+      <div class="sheet-content">
+        <div class="content-card">
+          <h3>Rekomendasi Tempat</h3>
+          <p>Jelajahi berbagai kuliner, tempat wisata, dan area populer di sekitar Jawa Barat.</p>
+        </div>
+      </div>
+    </div>
+
+ 
+<!-- Bottom Navigation Bar -->
+<div class="bottom-nav">
+  <!-- Menu 1: Jelajahi -->
+  <a href="#" class="nav-item active">
+    <div class="nav-icon-wrapper">
+      <img src="images/icon_explore_black.png" class="icon-inactive" alt="Jelajahi">
+      <img src="images/icon_explore.png" class="icon-active" alt="Jelajahi">
+    </div>
+    <span>Jelajahi</span>
+  </a>
+
+  <!-- Menu 2: Anda -->
+  <a href="#" class="nav-item">
+    <div class="nav-icon-wrapper">
+      <img src="images/icon_you_black.png" class="icon-inactive" alt="Anda">
+      <img src="images/icon_you.png" class="icon-active" alt="Anda">
+    </div>
+    <span>Anda</span>
+  </a>
+
+  <!-- Menu 3: Kontribusi -->
+  <a href="#" class="nav-item">
+    <div class="nav-icon-wrapper">
+      <img src="images/icon_contribute_black.png" class="icon-inactive" alt="Kontribusi">
+      <img src="images/icon_contribute.png" class="icon-active" alt="Kontribusi">
+    </div>
+    <span>Kontribusi</span>
+  </a>
+</div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

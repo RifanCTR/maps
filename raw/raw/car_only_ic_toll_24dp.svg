@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.3.1, SVG Export Plug-In . SVG Version: 6.00 Build 0 Optimized by SVGito https://sketchmaster.com/svg-optimizer hand refined by jaimitchell@)  -->
+<svg version="1.1" id="Toll_icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+    <path id="backCircle" d="M13.27,5.08c-0.69-0.25-1.43-0.43-2.19-0.52C12.17,3.01,13.97,2,16,2c3.31,0,6,2.69,6,6
+	c0,2.03-1.01,3.83-2.56,4.92c-0.09-0.76-0.26-1.49-0.52-2.19C19.59,10.02,20,9.06,20,8c0-2.21-1.79-4-4-4
+	C14.94,4,13.98,4.41,13.27,5.08z"></path>
+    <path id="numeral1" d="M9,12.5V18h2v-8l-3.5,1v1.5H9z"></path>
+    <circle id="frontCircle" cx="10" cy="14" r="7" fill="none" stroke-width="2" stroke="#000000" />
+</svg>
