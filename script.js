@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 3. FITUR DRAG BOTTOM SHEET + IKON SEMBUNYI SAAT DITARIK
+// 3. FITUR DRAG BOTTOM SHEET + IKON SEMBUNYI SAAT DITARIK
   if (dragHandleContainer && bottomSheet) {
     let startY = 0;
     let isDragging = false;
@@ -72,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const onDragMove = (e) => {
       if (!isDragging) return;
-      if (e.cancelable) e.preventDefault();
 
       const currentY = e.touches ? e.touches[0].clientY : e.clientY;
       const deltaY = currentY - startY;
@@ -149,13 +148,21 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    dragHandleContainer.addEventListener('touchstart', onDragStart, { passive: false });
-    window.addEventListener('touchmove', onDragMove, { passive: false });
+    dragHandleContainer.addEventListener('touchstart', onDragStart, { passive: true });
+    window.addEventListener('touchmove', onDragMove, { passive: true });
     window.addEventListener('touchend', onDragEnd);
 
     dragHandleContainer.addEventListener('mousedown', onDragStart);
     window.addEventListener('mousemove', onDragMove);
     window.addEventListener('mouseup', onDragEnd);
+
+    // KODE TAMBAHAN AGAR DAFTAR TOKO BISA DI-SCROLL DI HP
+    const sheetContent = document.querySelector('.sheet-content');
+    if (sheetContent) {
+      sheetContent.addEventListener('touchstart', (e) => {
+        e.stopPropagation();
+      }, { passive: true });
+    }
   }
 
   // 4. TOMBOL LOKASI SAYA (EFEK MEMANTUL)
