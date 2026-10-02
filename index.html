@@ -2,11 +2,10 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Google Maps Clone</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Google Maps</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
   <div class="phone-container">
 
@@ -310,6 +309,59 @@
       </a>
     </div>
 
+  </div>
+
+
+  <!-- ==================== POPUP LOKASI KUSTOM ==================== -->
+  <div id="locationModal" class="modal-overlay">
+    <div class="modal-card">
+      <!-- Top Icon Pin -->
+      <div class="top-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#0b57d0">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+      </div>
+
+      <!-- Title -->
+      <h2 class="modal-title">Izinkan <strong>Google Maps</strong> mengakses lokasi akurat perangkat ini?</h2>
+
+      <!-- Visual Option (Presisi vs Perkiraan) -->
+      <div class="accuracy-container">
+        <div class="accuracy-option active" id="optPrecise">
+          <div class="map-preview precise-preview">
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+              <circle cx="50" cy="50" r="50" fill="#e8f0fe"/>
+              <path d="M0 30 Q 50 20 100 40 M0 70 Q 50 60 100 80 M30 0 Q 40 50 20 100 M70 0 Q 60 50 80 100" stroke="#d3e3fd" stroke-width="6" fill="none"/>
+              <path d="M15 15 L 45 25 L 35 55 Z" fill="#c4eed0"/>
+              <circle cx="20" cy="38" r="2.5" fill="#ea4335"/>
+              <circle cx="38" cy="18" r="2.5" fill="#fbbc04"/>
+              <circle cx="75" cy="38" r="2.5" fill="#1a73e8"/>
+              <circle cx="50" cy="42" r="14" fill="#0b57d0" opacity="0.2"/>
+              <path d="M50 28 C43.3 28 38 33.3 38 40 C38 49 50 62 50 62 C50 62 62 49 62 40 C62 33.3 56.7 28 50 28 Z" fill="#0b57d0"/>
+              <circle cx="50" cy="38" r="4" fill="#ffffff"/>
+            </svg>
+          </div>
+          <span>Presisi</span>
+        </div>
+
+        <div class="accuracy-option" id="optApproximate">
+          <div class="map-preview approx-preview">
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+              <circle cx="50" cy="50" r="50" fill="#ffffff"/>
+              <path d="M10 20 L30 50 L10 80 M30 50 L90 20 M30 50 L80 85 M50 35 L85 45" stroke="#fbbc04" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M25 50 L28 56 M60 29 L63 35 M55 70 L58 76" stroke="#0b57d0" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span>Perkiraan</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons (2 Opsi) -->
+      <div class="action-list">
+        <button class="action-btn" id="btnAllow">Izinkan</button>
+        <button class="action-btn deny-btn" id="btnDeny">Lain kali</button>
+      </div>
+    </div>
   </div>
 
   <script src="script.js"></script>

