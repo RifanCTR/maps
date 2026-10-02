@@ -54,8 +54,8 @@ html, body {
 
 .my-location-dot {
   position: absolute;
-  top: 80%; /* Sesuaikan posisi tinggi titik di peta */
-  left: 15%; /* Ubah dari 3% ke 50% agar ada di tengah & tidak keluar layar */
+  top: 82%; /* Sesuaikan posisi tinggi titik di peta */
+  left: 20%; /* Ubah dari 3% ke 50% agar ada di tengah & tidak keluar layar */
   transform: translate(-50%, -50%);
   width: 120px; /* Sesuaikan ukuran icon */
   height: 120px;
@@ -250,7 +250,7 @@ html, body {
 
 .bottom-right-fabs {
   position: absolute;
-  bottom: 18%;
+  bottom: 200%;
   right: 14px;
   display: flex;
   flex-direction: column;
@@ -611,8 +611,9 @@ html, body {
   }
 
   .bottom-right-fabs {
-    bottom: 110px;
-    right: 10px;
+    position: relative;
+    bottom: -70%;
+    right: -85%;
   }
 
   .btn-my-location, .btn-direction {
