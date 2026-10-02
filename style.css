@@ -69,23 +69,6 @@ html, body {
   object-fit: contain;
 }
 
-.my-location-dot {
-  position: absolute;
-  top: 70%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50px;
-  height: 50px;
-  z-index: 5;
-  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.my-location-dot img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
 /* HEADER OVERLAY & SEARCH BAR */
 .top-overlay {
   position: absolute;
