@@ -14,15 +14,19 @@
     <div class="map-wrapper">
       <img src="images/map_jabar.png" alt="Peta Jawa Barat" class="map-image">
       
+      <!-- Marker Titik Lokasi Biru -->
+      <div class="my-location-dot">
+        <img src="images/icon_location_dot.png" alt="Titik Saya">
+      </div>
 
-      <!-- Watermark Google Maps -->
-<!-- Watermark Google Maps PNG -->
-<div class="map-watermark" id="mapWatermark">
-  <img src="images/google_maps_logo.png" alt="Google Maps">
-</div>
+      <!-- Watermark Google Maps PNG -->
+      <div class="map-watermark" id="mapWatermark">
+        <img src="images/google_maps_logo.png" alt="Google Maps">
+      </div>
+    </div>
 
     <!-- Header Overlay (Search Bar + Kategori Filter) -->
-    <div class="top-overlay">
+    <div class="top-overlay" id="topOverlay">
       <div class="search-bar">
         <img src="images/icon_search.png" class="search-icon" alt="Cari">
         <input type="text" id="searchInput" placeholder="Telusuri di sini" autocomplete="off">
@@ -67,7 +71,7 @@
     </div>
 
     <!-- Floating Action Buttons -->
-    <div class="floating-buttons">
+    <div class="floating-buttons" id="floatingButtons">
       <button class="fab btn-layer" title="Ubah Layer">
         <img src="images/icon_layer.png" alt="Layer">
       </button>
@@ -88,167 +92,196 @@
         <div class="drag-handle"></div>
         <div class="sheet-header">
           <div class="sheet-title">
-            <h2>Trending di Maps</h2>
+            <h2 id="sheetTitleText">Trending di Maps</h2>
           </div>
-          <button class="btn-close">&times;</button>
+          <button class="btn-close" id="btnClose">&times;</button>
         </div>
       </div>
 
       <div class="sheet-content">
         
-        <!-- TOKO 1 -->
-        <div class="store-card">
-          <div class="photo-gallery">
-            <div class="photo-item">
-              <img src="images/cendol_01.jpeg" alt="Foto 1">
-              <span class="badge">2 hari lalu</span>
-            </div>
-            <div class="photo-item"><img src="images/cendol_02.jpeg" alt="Foto 2"></div>
-            <div class="photo-item"><img src="images/cendol_03.jpeg" alt="Foto 3"></div>
-            <div class="photo-item"><img src="images/cendol_04.jpeg" alt="Foto 4"></div>
-          </div>
-
-          <div class="store-info">
-            <h3 class="store-name">Cendol Sri Rahayu Puspitek</h3>
-            <div class="store-rating">
-              <span class="score">4,4</span>
-              <div class="stars-img">
-                <img src="images/star_full.png" alt="star" class="star-icon">
-                <img src="images/star_full.png" alt="star" class="star-icon">
-                <img src="images/star_full.png" alt="star" class="star-icon">
-                <img src="images/star_full.png" alt="star" class="star-icon">
-                <img src="images/star_half.png" alt="star" class="star-icon">
+        <!-- TAB 1: JELAJAHI -->
+        <div id="tabJelajahi" class="tab-page active">
+          
+          <!-- TOKO 1 -->
+          <div class="store-card">
+            <div class="photo-gallery">
+              <div class="photo-item">
+                <img src="images/cendol_01.jpeg" alt="Foto 1">
+                <span class="badge">2 hari lalu</span>
               </div>
-              <span class="reviews">(245) · 25 km</span>
+              <div class="photo-item"><img src="images/cendol_02.jpeg" alt="Foto 2"></div>
+              <div class="photo-item"><img src="images/cendol_03.jpeg" alt="Foto 3"></div>
+              <div class="photo-item"><img src="images/cendol_04.jpeg" alt="Foto 4"></div>
             </div>
-            <div class="store-meta">Indonesia · Rp 1–25.000</div>
-            <div class="store-status"><span class="open">Buka</span> · Tutup pukul 22.50</div>
+
+            <div class="store-info">
+              <h3 class="store-name">Cendol Sri Rahayu Puspitek</h3>
+              <div class="store-rating">
+                <span class="score">4,4</span>
+                <div class="stars-img">
+                  <img src="images/star_full.png" alt="star" class="star-icon">
+                  <img src="images/star_full.png" alt="star" class="star-icon">
+                  <img src="images/star_full.png" alt="star" class="star-icon">
+                  <img src="images/star_full.png" alt="star" class="star-icon">
+                  <img src="images/star_half.png" alt="star" class="star-icon">
+                </div>
+                <span class="reviews">(245) · 25 km</span>
+              </div>
+              <div class="store-meta">Indonesia · Rp 1–25.000</div>
+              <div class="store-status"><span class="open">Buka</span> · Tutup pukul 22.50</div>
+            </div>
+
+            <div class="store-actions">
+              <div class="btn-pill">
+                <img src="images/icon_route.png" alt="Rute" class="btn-icon">
+                <span>Rute</span>
+              </div>
+              <div class="btn-pill">
+                <img src="images/icon_menu.png" alt="Menu" class="btn-icon">
+                <span>Menu</span>
+              </div>
+              <div class="btn-pill">
+                <img src="images/icon_phone.png" alt="Telepon" class="btn-icon">
+                <span>Telepon</span>
+              </div>
+              <div class="btn-pill">
+                <img src="images/icon_share.png" alt="Bagikan" class="btn-icon">
+                <span>Bagikan</span>
+              </div>
+              <div class="btn-pill">
+                <img src="images/icon_save.png" alt="Simpan" class="btn-icon">
+                <span>Simpan</span>
+              </div>
+            </div>
           </div>
 
-          <div class="store-actions">
-            <div class="btn-pill">
-              <img src="images/icon_route.png" alt="Rute" class="btn-icon">
-              <span>Rute</span>
+          <!-- TOKO 2 -->
+          <div class="store-card">
+            <div class="photo-gallery">
+              <div class="photo-item"><img src="images/ice_01.jpeg" alt="Foto 1"></div>
+              <div class="photo-item">
+                <img src="images/ice_02.jpeg" alt="Foto 2">
+                <span class="badge">14 hari lalu</span>
+              </div>
+              <div class="photo-item"><img src="images/ice_03.jpeg" alt="Foto 3"></div>
+              <div class="photo-item"><img src="images/ice_04.jpeg" alt="Foto 4"></div>
             </div>
-            <div class="btn-pill">
-              <img src="images/icon_menu.png" alt="Menu" class="btn-icon">
-              <span>Menu</span>
+
+            <div class="store-info">
+              <h3 class="store-name">Sedulur Milk Bar</h3>
+              <div class="store-rating">
+                <span class="score">5,0</span>
+                <div class="stars-img">
+                  <img src="images/star_full.png" alt="star" class="star-icon">
+                  <img src="images/star_full.png" alt="star" class="star-icon">
+                  <img src="images/star_full.png" alt="star" class="star-icon">
+                  <img src="images/star_full.png" alt="star" class="star-icon">
+                  <img src="images/star_full.png" alt="star" class="star-icon">
+                </div>
+                <span class="reviews">(14) · 24 km</span>
+              </div>
+              <div class="store-meta">Kedai Kopi · Rp 1–25.000</div>
+              <div class="store-status"><span class="open">Buka</span> · Tutup pukul 21.00</div>
             </div>
-            <div class="btn-pill">
-              <img src="images/icon_phone.png" alt="Telepon" class="btn-icon">
-              <span>Telepon</span>
+
+            <div class="store-actions">
+              <div class="btn-pill">
+                <img src="images/icon_route.png" alt="Rute" class="btn-icon">
+                <span>Rute</span>
+              </div>
+              <div class="btn-pill">
+                <img src="images/icon_menu.png" alt="Menu" class="btn-icon">
+                <span>Menu</span>
+              </div>
+              <div class="btn-pill">
+                <img src="images/icon_phone.png" alt="Telepon" class="btn-icon">
+                <span>Telepon</span>
+              </div>
+              <div class="btn-pill">
+                <img src="images/icon_share.png" alt="Bagikan" class="btn-icon">
+                <span>Bagikan</span>
+              </div>
+              <div class="btn-pill">
+                <img src="images/icon_save.png" alt="Simpan" class="btn-icon">
+                <span>Simpan</span>
+              </div>
             </div>
-            <div class="btn-pill">
-              <img src="images/icon_share.png" alt="Bagikan" class="btn-icon">
-              <span>Bagikan</span>
+          </div>
+
+          <!-- TOKO 3 -->
+          <div class="store-card">
+            <div class="photo-gallery">
+              <div class="photo-item"><img src="images/coffe_01.jpeg" alt="Foto 1"></div>
+              <div class="photo-item"><img src="images/coffe_02.jpeg" alt="Foto 2"></div>
+              <div class="photo-item"><img src="images/coffe_03.jpeg" alt="Foto 3"></div>
+              <div class="photo-item"><img src="images/coffe_04.jpeg" alt="Foto 4"></div>
             </div>
-            <div class="btn-pill">
-              <img src="images/icon_save.png" alt="Simpan" class="btn-icon">
-              <span>Simpan</span>
+
+            <div class="store-info">
+              <h3 class="store-name">Labakers</h3>
+              <div class="store-rating">
+                <span class="score">4,8</span>
+                <div class="stars-img">
+                  <img src="images/star_full.png" alt="star" class="star-icon">
+                  <img src="images/star_full.png" alt="star" class="star-icon">
+                  <img src="images/star_full.png" alt="star" class="star-icon">
+                  <img src="images/star_full.png" alt="star" class="star-icon">
+                  <img src="images/star_half.png" alt="star" class="star-icon">
+                </div>
+                <span class="reviews">(89) · 18 km</span>
+              </div>
+              <div class="store-meta">Toko Roti · Rp 25–50.000</div>
+              <div class="store-status"><span class="open">Buka</span> · Tutup pukul 20.00</div>
             </div>
+
+            <div class="store-actions">
+              <div class="btn-pill">
+                <img src="images/icon_route.png" alt="Rute" class="btn-icon">
+                <span>Rute</span>
+              </div>
+              <div class="btn-pill">
+                <img src="images/icon_menu.png" alt="Menu" class="btn-icon">
+                <span>Menu</span>
+              </div>
+              <div class="btn-pill">
+                <img src="images/icon_phone.png" alt="Telepon" class="btn-icon">
+                <span>Telepon</span>
+              </div>
+              <div class="btn-pill">
+                <img src="images/icon_share.png" alt="Bagikan" class="btn-icon">
+                <span>Bagikan</span>
+              </div>
+              <div class="btn-pill">
+                <img src="images/icon_save.png" alt="Simpan" class="btn-icon">
+                <span>Simpan</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- TAB 2: ANDA -->
+        <div id="tabAnda" class="tab-page">
+          <div class="empty-state">
+            <h2>Jadikan peta pribadi</h2>
+            <p>Login untuk melihat tempat dan perjalanan tersimpan, serta mendapatkan rekomendasi yang dipersonalisasi</p>
+            <div class="illustration-box">
+              <img src="images/illustration_login.png" alt="Ilustrasi Anda">
+            </div>
+            <button class="btn-login-main">Login</button>
           </div>
         </div>
 
-        <!-- TOKO 2 -->
-        <div class="store-card">
-          <div class="photo-gallery">
-            <div class="photo-item"><img src="images/ice_01.jpeg" alt="Foto 1"></div>
-            <div class="photo-item">
-              <img src="images/ice_02.jpeg" alt="Foto 2">
-              <span class="badge">14 hari lalu</span>
+        <!-- TAB 3: KONTRIBUSI -->
+        <div id="tabKontribusi" class="tab-page">
+          <div class="empty-state">
+            <h2>Bagikan pengalaman Anda</h2>
+            <p>Login untuk menambahkan foto, ulasan, dan yang lainnya ke Google Maps.</p>
+            <div class="illustration-box">
+              <img src="images/illustration_login.png" alt="Ilustrasi Kontribusi">
             </div>
-            <div class="photo-item"><img src="images/ice_03.jpeg" alt="Foto 3"></div>
-            <div class="photo-item"><img src="images/ice_04.jpeg" alt="Foto 4"></div>
-          </div>
-
-          <div class="store-info">
-            <h3 class="store-name">Sedulur Milk Bar</h3>
-            <div class="store-rating">
-              <span class="score">5,0</span>
-              <div class="stars-img">
-                <img src="images/star_full.png" alt="star" class="star-icon">
-                <img src="images/star_full.png" alt="star" class="star-icon">
-                <img src="images/star_full.png" alt="star" class="star-icon">
-                <img src="images/star_full.png" alt="star" class="star-icon">
-                <img src="images/star_full.png" alt="star" class="star-icon">
-              </div>
-              <span class="reviews">(14) · 24 km</span>
-            </div>
-            <div class="store-meta">Kedai Kopi · Rp 1–25.000</div>
-            <div class="store-status"><span class="open">Buka</span> · Tutup pukul 21.00</div>
-          </div>
-
-          <div class="store-actions">
-            <div class="btn-pill">
-              <img src="images/icon_route.png" alt="Rute" class="btn-icon">
-              <span>Rute</span>
-            </div>
-            <div class="btn-pill">
-              <img src="images/icon_menu.png" alt="Menu" class="btn-icon">
-              <span>Menu</span>
-            </div>
-            <div class="btn-pill">
-              <img src="images/icon_phone.png" alt="Telepon" class="btn-icon">
-              <span>Telepon</span>
-            </div>
-            <div class="btn-pill">
-              <img src="images/icon_share.png" alt="Bagikan" class="btn-icon">
-              <span>Bagikan</span>
-            </div>
-            <div class="btn-pill">
-              <img src="images/icon_save.png" alt="Simpan" class="btn-icon">
-              <span>Simpan</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- TOKO 3 -->
-        <div class="store-card">
-          <div class="photo-gallery">
-            <div class="photo-item"><img src="images/coffe_01.jpeg" alt="Foto 1"></div>
-            <div class="photo-item"><img src="images/coffe_02.jpeg" alt="Foto 2"></div>
-            <div class="photo-item"><img src="images/coffe_03.jpeg" alt="Foto 3"></div>
-            <div class="photo-item"><img src="images/coffe_04.jpeg" alt="Foto 4"></div>
-          </div>
-
-          <div class="store-info">
-            <h3 class="store-name">Labakers</h3>
-            <div class="store-rating">
-              <span class="score">4,8</span>
-              <div class="stars-img">
-                <img src="images/star_full.png" alt="star" class="star-icon">
-                <img src="images/star_full.png" alt="star" class="star-icon">
-                <img src="images/star_full.png" alt="star" class="star-icon">
-                <img src="images/star_full.png" alt="star" class="star-icon">
-                <img src="images/star_half.png" alt="star" class="star-icon">
-              </div>
-              <span class="reviews">(89) · 18 km</span>
-            </div>
-            <div class="store-meta">Toko Roti · Rp 25–50.000</div>
-            <div class="store-status"><span class="open">Buka</span> · Tutup pukul 20.00</div>
-          </div>
-
-          <div class="store-actions">
-            <div class="btn-pill">
-              <img src="images/icon_route.png" alt="Rute" class="btn-icon">
-              <span>Rute</span>
-            </div>
-            <div class="btn-pill">
-              <img src="images/icon_menu.png" alt="Menu" class="btn-icon">
-              <span>Menu</span>
-            </div>
-            <div class="btn-pill">
-              <img src="images/icon_phone.png" alt="Telepon" class="btn-icon">
-              <span>Telepon</span>
-            </div>
-            <div class="btn-pill">
-              <img src="images/icon_share.png" alt="Bagikan" class="btn-icon">
-              <span>Bagikan</span>
-            </div>
-            <div class="btn-pill">
-              <img src="images/icon_save.png" alt="Simpan" class="btn-icon">
-              <span>Simpan</span>
-            </div>
+            <button class="btn-login-main">Login</button>
           </div>
         </div>
 

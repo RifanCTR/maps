@@ -16,7 +16,7 @@ html, body {
   background-color: #ffffff;
 }
 
-/* CONTAINER UTAMA (AUTO RESPONSIF) */
+/* CONTAINER UTAMA */
 .phone-container {
   width: 100%;
   height: 100dvh;
@@ -52,13 +52,12 @@ html, body {
   display: block;
 }
 
-/* WATERMARK GOOGLE MAPS (PNG) */
 .map-watermark {
   position: absolute;
-  bottom: 136px; /* Tetap kunci jarak 12px di atas Bottom Sheet */
+  bottom: 136px;
   left: 14px;
   z-index: 5;
-  height: 22px; /* Sesuaikan tinggi logo PNG (misal 20px - 24px) */
+  height: 22px;
   pointer-events: none;
   transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
 }
@@ -70,6 +69,23 @@ html, body {
   object-fit: contain;
 }
 
+.my-location-dot {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  z-index: 5;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.my-location-dot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 /* HEADER OVERLAY & SEARCH BAR */
 .top-overlay {
   position: absolute;
@@ -78,6 +94,7 @@ html, body {
   width: 100%;
   z-index: 5;
   padding: 0 !important;
+  transition: opacity 0.2s ease;
 }
 
 .search-bar {
@@ -198,12 +215,12 @@ html, body {
   bottom: 0;
   pointer-events: none;
   z-index: 4;
+  transition: opacity 0.2s ease;
 }
 
 .fab {
   pointer-events: auto;
   border: none;
-  border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -217,6 +234,7 @@ html, body {
   right: 14px;
   width: 44px;
   height: 44px;
+  border-radius: 50%;
   background: #ffffff;
 }
 
@@ -236,31 +254,31 @@ html, body {
   transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
 }
 
-/* BIKIN TOMBOL LOKASI & RUTE ENGGA TERLALU BULAT */
+/* BORDER-RADIUS TOMBOL LOKASI & RUTE (MATERIAL YOU 16px) */
 .bottom-right-fabs .fab {
-  border-radius: 16px !important; /* Ganti ke 12px kalau mau lebih kotak, atau 20px kalau mau agak bulat */
+  border-radius: 16px !important;
 }
 
 .btn-my-location {
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
   background: #ffffff;
 }
 
 .btn-my-location img {
-  width: 50px;
-  height: 50px;
+  width: 46px;
+  height: 46px;
 }
 
 .btn-direction {
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
   background: #006a6f;
 }
 
 .btn-direction img {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
 }
 
 /* BOTTOM SHEET */
@@ -325,14 +343,22 @@ html, body {
   -webkit-overflow-scrolling: touch !important;
   touch-action: pan-y !important;
   overscroll-behavior-y: contain;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
   scrollbar-width: none;
 }
 
 .sheet-content::-webkit-scrollbar {
   display: none;
+}
+
+/* SISTEM TAB PAGE */
+.tab-page {
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tab-page.active {
+  display: flex;
 }
 
 /* TOKO & KARTU INFORMASI */
@@ -482,6 +508,55 @@ html, body {
   object-fit: contain;
 }
 
+/* TAMPILAN EMPTY STATE (ANDA & KONTRIBUSI) */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px 20px 40px 20px;
+}
+
+.empty-state h2 {
+  font-size: 22px;
+  font-weight: 500;
+  color: #1f1f1f;
+  margin-bottom: 10px;
+}
+
+.empty-state p {
+  font-size: 14px;
+  color: #5f6368;
+  line-height: 1.45;
+  max-width: 320px;
+  margin-bottom: 28px;
+}
+
+.illustration-box {
+  width: 220px;
+  height: 170px;
+  margin-bottom: 28px;
+}
+
+.illustration-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.btn-login-main {
+  background-color: #006a6f;
+  color: #ffffff;
+  border: none;
+  padding: 10px 36px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
 /* BOTTOM NAVIGATION BAR */
 .bottom-nav {
   position: absolute;
@@ -499,8 +574,8 @@ html, body {
 }
 
 .nav-item {
-  pointer-events: none !important;
-  cursor: default !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
   display: flex;
   flex-direction: column;
   align-items: center;
