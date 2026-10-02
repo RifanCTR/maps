@@ -1,19 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Matikan popup tekan-tahan & klik kanan khusus gambar
-document.addEventListener('contextmenu', (e) => {
-  if (e.target.tagName === 'IMG') {
-    e.preventDefault();
-  }
-});
-
-// Matikan fitur drag gambar bawaan browser
-document.addEventListener('dragstart', (e) => {
-  if (e.target.tagName === 'IMG') {
-    e.preventDefault();
-  }
-});
   
-  // 1. ELEMEN SELEKTOR
+  // Element Selectors
   const bottomSheet = document.getElementById('bottomSheet');
   const dragHandleContainer = document.getElementById('dragHandle');
   const btnMyLocation = document.getElementById('btnMyLocation');
@@ -24,8 +11,9 @@ document.addEventListener('dragstart', (e) => {
   const navItems = document.querySelectorAll('.nav-item');
   const searchInput = document.getElementById('searchInput');
   const btnClearSearch = document.getElementById('btnClearSearch');
+  const btnClose = document.querySelector('.btn-close');
 
-  // 2. FITUR INPUT TELUSURI (SEARCH BAR)
+  // 1. FITUR INPUT SEARCH
   if (searchInput) {
     searchInput.addEventListener('input', () => {
       if (btnClearSearch) {
@@ -52,7 +40,7 @@ document.addEventListener('dragstart', (e) => {
     });
   }
 
-// 3. FITUR DRAG BOTTOM SHEET + IKON SEMBUNYI SAAT DITARIK
+  // 2. FITUR DRAG BOTTOM SHEET + IKON SEMBUNYI & FIX DOT LOCATION
   if (dragHandleContainer && bottomSheet) {
     let startY = 0;
     let isDragging = false;
@@ -68,6 +56,26 @@ document.addEventListener('dragstart', (e) => {
     let initialTranslateY = MAX_TRANSLATE;
     let currentTranslateY = MAX_TRANSLATE;
     const MIN_TRANSLATE = 0;
+
+    // Helper untuk mengatur posisi bottom sheet & ikon melayang
+    const setSheetPosition = (translateY) => {
+      bottomSheet.style.transform = `translateY(${translateY}px)`;
+      const openProgress = Math.max(0, Math.min(1, (MAX_TRANSLATE - translateY) / MAX_TRANSLATE));
+      const iconDropOffset = openProgress * 150; 
+      const iconOpacity = Math.max(0, 1 - openProgress * 1.6);
+
+      if (bottomRightFabs) {
+        bottomRightFabs.style.transform = `translateY(${iconDropOffset}px)`;
+        bottomRightFabs.style.opacity = iconOpacity;
+        bottomRightFabs.style.pointerEvents = openProgress > 0.5 ? 'none' : 'auto';
+      }
+      
+      // Tetap pertahankan translate(-50%, -50%) agar posisi horizontal tidak bergeser
+      if (locationDot) {
+        locationDot.style.transform = `translate(-50%, -50%) translateY(${iconDropOffset}px)`;
+        locationDot.style.opacity = iconOpacity;
+      }
+    };
 
     const onDragStart = (e) => {
       isDragging = true;
@@ -95,21 +103,7 @@ document.addEventListener('dragstart', (e) => {
       if (newTranslateY > MAX_TRANSLATE) newTranslateY = MAX_TRANSLATE;
 
       currentTranslateY = newTranslateY;
-
-      const openProgress = (MAX_TRANSLATE - newTranslateY) / MAX_TRANSLATE;
-      const iconDropOffset = openProgress * 150; 
-      const iconOpacity = Math.max(0, 1 - openProgress * 1.6);
-
-      bottomSheet.style.transform = `translateY(${newTranslateY}px)`;
-
-      if (bottomRightFabs) {
-        bottomRightFabs.style.transform = `translateY(${iconDropOffset}px)`;
-        bottomRightFabs.style.opacity = iconOpacity;
-      }
-      if (locationDot) {
-        locationDot.style.transform = `translateY(${iconDropOffset}px)`;
-        locationDot.style.opacity = iconOpacity;
-      }
+      setSheetPosition(newTranslateY);
     };
 
     const onDragEnd = () => {
@@ -134,30 +128,10 @@ document.addEventListener('dragstart', (e) => {
 
       if (shouldExpand) {
         bottomSheet.classList.add('expanded');
-        bottomSheet.style.transform = `translateY(${MIN_TRANSLATE}px)`;
-        
-        if (bottomRightFabs) {
-          bottomRightFabs.style.transform = `translateY(150px)`;
-          bottomRightFabs.style.opacity = '0';
-          bottomRightFabs.style.pointerEvents = 'none';
-        }
-        if (locationDot) {
-          locationDot.style.transform = `translateY(150px)`;
-          locationDot.style.opacity = '0';
-        }
+        setSheetPosition(MIN_TRANSLATE);
       } else {
         bottomSheet.classList.remove('expanded');
-        bottomSheet.style.transform = `translateY(${MAX_TRANSLATE}px)`;
-
-        if (bottomRightFabs) {
-          bottomRightFabs.style.transform = `translateY(0px)`;
-          bottomRightFabs.style.opacity = '1';
-          bottomRightFabs.style.pointerEvents = 'auto';
-        }
-        if (locationDot) {
-          locationDot.style.transform = `translateY(0px)`;
-          locationDot.style.opacity = '1';
-        }
+        setSheetPosition(MAX_TRANSLATE);
       }
     };
 
@@ -169,28 +143,46 @@ document.addEventListener('dragstart', (e) => {
     window.addEventListener('mousemove', onDragMove);
     window.addEventListener('mouseup', onDragEnd);
 
-    // Izinkan scroll vertikal normal di dalam sheet tanpa mengabaikan gesture child
-      const sheetContent = document.querySelector('.sheet-content');
-      if (sheetContent) {
-  sheetContent.addEventListener('touchstart', (e) => {
-        // Biarkan browser menangani touch native di foto/tombol
+    // Tombol Close pada Sheet Header
+    if (btnClose) {
+      btnClose.addEventListener('click', () => {
+        bottomSheet.classList.remove('expanded');
+        bottomSheet.style.transition = 'transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease';
+        setSheetPosition(MAX_TRANSLATE);
+      });
+    }
+
+    // Update tinggi sheet saat ukuran layar di-resize
+    window.addEventListener('resize', () => {
+      const heights = getSheetHeights();
+      MAX_TRANSLATE = heights.maxTranslate;
+      if (!bottomSheet.classList.contains('expanded')) {
+        setSheetPosition(MAX_TRANSLATE);
+      }
+    });
+
+    // Cegah interupsi drag bottom-sheet saat scroll di dalam daftar toko
+    const sheetContent = document.querySelector('.sheet-content');
+    if (sheetContent) {
+      sheetContent.addEventListener('touchstart', (e) => {
+        e.stopPropagation();
       }, { passive: true });
     }
   }
 
-  // 4. TOMBOL LOKASI SAYA (EFEK MEMANTUL)
+  // 3. EFEK TOMBOL LOKASI SAYA (ANIMASI BOUNCE)
   if (btnMyLocation && locationDot) {
     btnMyLocation.addEventListener('click', () => {
       locationDot.style.transition = 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-      locationDot.style.transform = 'translateY(0px) scale(1.4)';
+      locationDot.style.transform = 'translate(-50%, -50%) scale(1.3)';
       
       setTimeout(() => {
-        locationDot.style.transform = 'translateY(0px) scale(1)';
+        locationDot.style.transform = 'translate(-50%, -50%) scale(1)';
       }, 300);
     });
   }
 
-  // 5. CHIP KATEGORI (UBAH AKTIF)
+  // 4. CHIP KATEGORI (FILTER)
   chips.forEach(chip => {
     chip.addEventListener('click', () => {
       chips.forEach(c => c.classList.remove('active'));
@@ -198,7 +190,7 @@ document.addEventListener('dragstart', (e) => {
     });
   });
 
-  // 6. FITUR MOUSE DRAG SCROLL
+  // 5. DRAG SCROLL MOUSE UNTUK PC/DESKTOP PADA ELEMEN HORIZONTAL
   const makeHorizontalScrollable = (container) => {
     if (!container) return;
     let isDown = false;
@@ -232,16 +224,10 @@ document.addEventListener('dragstart', (e) => {
   };
 
   makeHorizontalScrollable(categoryScroll);
+  document.querySelectorAll('.photo-gallery').forEach(gallery => makeHorizontalScrollable(gallery));
+  document.querySelectorAll('.store-actions').forEach(actions => makeHorizontalScrollable(actions));
 
-  document.querySelectorAll('.photo-gallery').forEach(gallery => {
-    makeHorizontalScrollable(gallery);
-  });
-
-  document.querySelectorAll('.store-actions').forEach(actions => {
-    makeHorizontalScrollable(actions);
-  });
-
-  // 7. BOTTOM NAV SWITCH TAB
+  // 6. BOTTOM NAVIGATION SWITCH
   navItems.forEach(item => {
     item.addEventListener('click', (e) => {
       e.preventDefault();
@@ -250,21 +236,17 @@ document.addEventListener('dragstart', (e) => {
     });
   });
 
+  // 7. PROTEKSI GAMBAR DARI TEKAN-TAHAN / DOWNLOAD / DRAG
+  document.addEventListener('contextmenu', (e) => {
+    if (e.target.tagName === 'IMG') {
+      e.preventDefault();
+    }
+  });
+
+  document.addEventListener('dragstart', (e) => {
+    if (e.target.tagName === 'IMG') {
+      e.preventDefault();
+    }
+  });
+
 });
-
-// Helper Fungsi Generasi Bintang Gambar Dinamis (Jika Render dari JS)
-function generateStarHTML(rating) {
-  const fullStars = Math.floor(rating);
-  const hasHalfStar = (rating % 1) >= 0.5;
-  let html = '';
-
-  for (let i = 0; i < fullStars; i++) {
-    html += `<img src="images/star_full.png" alt="star" class="star-icon">`;
-  }
-
-  if (hasHalfStar) {
-    html += `<img src="images/star_half.png" alt="star" class="star-icon">`;
-  }
-
-  return html;
-}

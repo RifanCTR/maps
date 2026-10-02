@@ -54,10 +54,10 @@ html, body {
 
 .my-location-dot {
   position: absolute;
-  top: 73%;
-  left: 3%;
+  top: 80%; /* Sesuaikan posisi tinggi titik di peta */
+  left: 15%; /* Ubah dari 3% ke 50% agar ada di tengah & tidak keluar layar */
   transform: translate(-50%, -50%);
-  width: 120px;
+  width: 120px; /* Sesuaikan ukuran icon */
   height: 120px;
   z-index: 5;
   transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -250,7 +250,7 @@ html, body {
 
 .bottom-right-fabs {
   position: absolute;
-  bottom: 145px;
+  bottom: 18%;
   right: 14px;
   display: flex;
   flex-direction: column;
@@ -528,6 +528,8 @@ html, body {
 }
 
 .nav-item {
+  pointer-events: none !important; /* Bikin tombol ga bisa ditekan sama sekali */
+  cursor: default !important;
   display: flex;
   flex-direction: column;
   align-items: center;
