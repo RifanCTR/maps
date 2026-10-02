@@ -54,7 +54,7 @@ html, body {
 
 .my-location-dot {
   position: absolute;
-  top: 82%; /* Sesuaikan posisi tinggi titik di peta */
+  top: 78%; /* Sesuaikan posisi tinggi titik di peta */
   left: 20%; /* Ubah dari 3% ke 50% agar ada di tengah & tidak keluar layar */
   transform: translate(-50%, -50%);
   width: 120px; /* Sesuaikan ukuran icon */
@@ -250,7 +250,6 @@ html, body {
 
 .bottom-right-fabs {
   position: absolute;
-  bottom: 200%;
   right: 14px;
   display: flex;
   flex-direction: column;
@@ -612,7 +611,7 @@ html, body {
 
   .bottom-right-fabs {
     position: relative;
-    bottom: -70%;
+    bottom: -65%;
     right: -85%;
   }
 
