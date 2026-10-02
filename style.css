@@ -4,6 +4,7 @@
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   user-select: none;
+  -webkit-user-select: none;
 }
 
 /* BASE HTML & BODY */
@@ -18,25 +19,24 @@ html, body {
 /* CONTAINER UTAMA (AUTO RESPONSIF) */
 .phone-container {
   width: 100%;
-  height: 100dvh; /* Menggunakan dvh agar pas dengan dynamic viewport HP */
-  max-width: 480px; /* Di PC/Laptop tampil rapi ala HP */
-  margin: 0 auto; /* Posisikan ke tengah layar PC */
+  height: 100dvh;
+  max-width: 480px;
+  margin: 0 auto;
   position: relative;
   overflow: hidden;
   background-color: #8ed0e0;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.15); /* Bayangan rapi saat dibuka di PC */
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
 }
 
-/* KETIKA DI BUKA DI HP (LAYAR <= 480px) */
 @media (max-width: 480px) {
   .phone-container {
-    max-width: 100%; /* Otomatis Full Screen di HP */
+    max-width: 100%;
     height: 100%;
     box-shadow: none;
   }
 }
 
-/* PETA BACKGROUND */
+/* PETA BACKGROUND & WATERMARK */
 .map-wrapper {
   width: 100%;
   height: 100%;
@@ -52,20 +52,21 @@ html, body {
   display: block;
 }
 
-.my-location-dot {
+/* WATERMARK GOOGLE MAPS (PNG) */
+.map-watermark {
   position: absolute;
-  top: 78%; /* Sesuaikan posisi tinggi titik di peta */
-  left: 20%; /* Ubah dari 3% ke 50% agar ada di tengah & tidak keluar layar */
-  transform: translate(-50%, -50%);
-  width: 120px; /* Sesuaikan ukuran icon */
-  height: 120px;
+  bottom: 136px; /* Tetap kunci jarak 12px di atas Bottom Sheet */
+  left: 14px;
   z-index: 5;
-  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  height: 22px; /* Sesuaikan tinggi logo PNG (misal 20px - 24px) */
+  pointer-events: none;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
 }
 
-.my-location-dot img {
-  width: 100%;
+.map-watermark img {
   height: 100%;
+  width: auto;
+  display: block;
   object-fit: contain;
 }
 
@@ -74,9 +75,9 @@ html, body {
   position: absolute;
   top: 14px;
   left: 0;
-  right: 0;
+  width: 100%;
   z-index: 5;
-  padding: 0 14px;
+  padding: 0 !important;
 }
 
 .search-bar {
@@ -86,6 +87,7 @@ html, body {
   display: flex;
   align-items: center;
   padding: 0 8px 0 16px;
+  margin: 0 14px;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
   overflow: hidden;
 }
@@ -131,31 +133,7 @@ html, body {
   flex-shrink: 0;
 }
 
-/* 1. Hapus padding dari top-overlay */
-/* 1. Paksa top-overlay melebar 100% tanpa padding */
-.top-overlay {
-  position: absolute;
-  top: 14px;
-  left: 0;
-  width: 100%;
-  z-index: 5;
-  padding: 0 !important;
-}
-
-/* 2. Jaga search bar tetap punya jarak dari pinggir layar */
-.search-bar {
-  background: #ffffff;
-  height: 52px;
-  border-radius: 28px;
-  display: flex;
-  align-items: center;
-  padding: 0 8px 0 16px;
-  margin: 0 14px; /* Jarak search bar kiri-kanan */
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-  overflow: hidden;
-}
-
-/* 3. Bikin area scroll chip nempel mentok sampai ujung kanan */
+/* CHIP KATEGORI */
 .category-scroll {
   width: 100%;
   display: flex;
@@ -166,12 +144,11 @@ html, body {
   scrollbar-width: none;
   -ms-overflow-style: none;
   -webkit-overflow-scrolling: touch;
-  padding: 0 0 4px 14px !important; /* Kiri 14px, Kanan 0 (mentok layar) */
+  padding: 0 0 4px 14px !important;
   cursor: grab;
   touch-action: pan-x;
 }
 
-/* 4. Trik biar chip terakhir pas digeser mentok tetap ada jarak manis di kanan */
 .category-scroll::after {
   content: '';
   padding-right: 6px;
@@ -250,12 +227,18 @@ html, body {
 
 .bottom-right-fabs {
   position: absolute;
+  bottom: 136px;
   right: 14px;
   display: flex;
   flex-direction: column;
   gap: 12px;
   z-index: 7;
   transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
+}
+
+/* BIKIN TOMBOL LOKASI & RUTE ENGGA TERLALU BULAT */
+.bottom-right-fabs .fab {
+  border-radius: 16px !important; /* Ganti ke 12px kalau mau lebih kotak, atau 20px kalau mau agak bulat */
 }
 
 .btn-my-location {
@@ -280,7 +263,7 @@ html, body {
   height: 40px;
 }
 
-/* BOTTOM SHEET RESPONSIF (DINAMIS SAMA TINGGI LAYAR) */
+/* BOTTOM SHEET */
 .bottom-sheet {
   position: absolute;
   bottom: 68px;
@@ -299,7 +282,8 @@ html, body {
 
 .drag-handle-container {
   width: 100%;
-  padding: 10px 20px 8px 20px;
+  height: 56px;
+  padding: 8px 20px;
   cursor: pointer;
   touch-action: none;
 }
@@ -337,13 +321,10 @@ html, body {
   font-size: 14px;
   color: #5f6368;
   height: calc(100% - 60px);
-  
-  /* PENGATURAN Wajib BISA SCROLL DI HP */
   overflow-y: auto !important;
-  -webkit-overflow-scrolling: touch !important; /* Smooth scroll khusus iOS & Android */
-  touch-action: pan-y !important; /* Izinkan gesture swipe atas-bawah di HP */
-  overscroll-behavior-y: contain; /* Biar scroll isi toko ga bentrok sama drag sheet */
-  
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
+  overscroll-behavior-y: contain;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -364,31 +345,16 @@ html, body {
   border-bottom: none;
 }
 
-/* PERBAIKAN GALERI FOTO */
 .photo-gallery {
   display: flex !important;
   flex-direction: row !important;
   flex-wrap: nowrap !important;
   overflow-x: auto !important;
   overflow-y: hidden !important;
-  touch-action: pan-x pan-y !important; /* Ganti dari 'pan-x' ke 'pan-x pan-y' */
+  touch-action: pan-x pan-y !important;
   -webkit-overflow-scrolling: touch !important;
   gap: 8px;
   padding: 0 16px 12px 16px;
-  scrollbar-width: none;
-}
-
-/* PERBAIKAN TOMBOL AKSI (RUTE, MENU, DLL) */
-.store-actions {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: nowrap !important;
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
-  touch-action: pan-x pan-y !important; /* Ganti dari 'pan-x' ke 'pan-x pan-y' */
-  -webkit-overflow-scrolling: touch !important;
-  gap: 8px;
-  padding: 12px 16px 0 16px;
   scrollbar-width: none;
 }
 
@@ -476,7 +442,7 @@ html, body {
   flex-wrap: nowrap !important;
   overflow-x: auto !important;
   overflow-y: hidden !important;
-  touch-action: pan-x !important;
+  touch-action: pan-x pan-y !important;
   -webkit-overflow-scrolling: touch !important;
   gap: 8px;
   padding: 12px 16px 0 16px;
@@ -502,6 +468,12 @@ html, body {
   color: #001d35;
   white-space: nowrap;
   cursor: pointer;
+  touch-action: auto !important;
+}
+
+.btn-pill img,
+.btn-pill span {
+  pointer-events: none !important;
 }
 
 .btn-pill .btn-icon {
@@ -527,7 +499,7 @@ html, body {
 }
 
 .nav-item {
-  pointer-events: none !important; /* Bikin tombol ga bisa ditekan sama sekali */
+  pointer-events: none !important;
   cursor: default !important;
   display: flex;
   flex-direction: column;
@@ -585,11 +557,19 @@ html, body {
   font-weight: 700;
 }
 
+/* PROTEKSI GAMBAR */
+img {
+  -webkit-touch-callout: none !important;
+  -webkit-user-drag: none !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  pointer-events: none !important;
+}
+
 /* MEDIA QUERY HP / LAYAR KECIL */
 @media (max-width: 480px) {
   .top-overlay {
     top: 10px;
-    padding: 0 10px;
   }
 
   .search-bar {
@@ -610,34 +590,11 @@ html, body {
   }
 
   .bottom-right-fabs {
-    position: relative;
-    bottom: -65%;
-    right: -85%;
+    right: 10px;
   }
 
   .btn-my-location, .btn-direction {
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
   }
-}
-/* FIX KHUSUS TOMBOL (RUTE, MENU, DLL) BIAR BISA DI-SCROLL VERTIKAL */
-.btn-pill {
-  touch-action: auto !important; /* Bebaskan browser buat scroll vertikal */
-  -webkit-user-select: none;
-  user-select: none;
-}
-
-/* MATIKAN INTERAKSI SENTUHAN DI TEKS DAN IKON DALAM TOMBOL */
-.btn-pill img,
-.btn-pill span {
-  pointer-events: none; /* Sentuhan jari langsung tembus ke tombol tanpa nyangkut di teks/ikon */
-}
-
-/* PROTEKSI SEMUA GAMBAR/IKON DARI DOWNLOAD & TEKAN-TAHAN */
-img {
-  -webkit-touch-callout: none !important; /* Matikan popup menu "Simpan Gambar" di Android & iOS */
-  -webkit-user-drag: none !important;     /* Matikan fitur seret/drag gambar */
-  user-select: none !important;            /* Matikan seleksi/sorot gambar */
-  -webkit-user-select: none !important;
-  pointer-events: none !important;        /* Bikin sentuhan jempol tembus langsung ke elemen induk */
 }

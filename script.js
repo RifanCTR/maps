@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const dragHandleContainer = document.getElementById('dragHandle');
   const btnMyLocation = document.getElementById('btnMyLocation');
   const locationDot = document.querySelector('.my-location-dot');
+  const mapWatermark = document.getElementById('mapWatermark');
   const bottomRightFabs = document.querySelector('.bottom-right-fabs');
   const categoryScroll = document.getElementById('categoryScroll');
   const chips = document.querySelectorAll('.chip');
-  const navItems = document.querySelectorAll('.nav-item');
   const searchInput = document.getElementById('searchInput');
   const btnClearSearch = document.getElementById('btnClearSearch');
   const btnClose = document.querySelector('.btn-close');
@@ -40,14 +40,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. FITUR DRAG BOTTOM SHEET + IKON SEMBUNYI & FIX DOT LOCATION
+  // 2. FITUR DRAG BOTTOM SHEET + ANIMASI IKON MELAYANG & WATERMARK
   if (dragHandleContainer && bottomSheet) {
     let startY = 0;
     let isDragging = false;
 
     const getSheetHeights = () => {
       const sheetHeight = bottomSheet.offsetHeight || 520;
-      const headerHeight = dragHandleContainer.offsetHeight || 60;
+      const headerHeight = dragHandleContainer.offsetHeight || 56;
       const maxTranslate = sheetHeight - headerHeight;
       return { sheetHeight, headerHeight, maxTranslate };
     };
@@ -57,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentTranslateY = MAX_TRANSLATE;
     const MIN_TRANSLATE = 0;
 
-    // Helper untuk mengatur posisi bottom sheet & ikon melayang
     const setSheetPosition = (translateY) => {
       bottomSheet.style.transform = `translateY(${translateY}px)`;
       const openProgress = Math.max(0, Math.min(1, (MAX_TRANSLATE - translateY) / MAX_TRANSLATE));
@@ -70,10 +69,14 @@ document.addEventListener('DOMContentLoaded', () => {
         bottomRightFabs.style.pointerEvents = openProgress > 0.5 ? 'none' : 'auto';
       }
       
-      // Tetap pertahankan translate(-50%, -50%) agar posisi horizontal tidak bergeser
       if (locationDot) {
         locationDot.style.transform = `translate(-50%, -50%) translateY(${iconDropOffset}px)`;
         locationDot.style.opacity = iconOpacity;
+      }
+
+      if (mapWatermark) {
+        mapWatermark.style.transform = `translateY(${iconDropOffset}px)`;
+        mapWatermark.style.opacity = iconOpacity;
       }
     };
 
@@ -87,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
       bottomSheet.style.transition = 'none';
       if (bottomRightFabs) bottomRightFabs.style.transition = 'none';
       if (locationDot) locationDot.style.transition = 'none';
+      if (mapWatermark) mapWatermark.style.transition = 'none';
 
       initialTranslateY = bottomSheet.classList.contains('expanded') ? MIN_TRANSLATE : MAX_TRANSLATE;
     };
@@ -114,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
       bottomSheet.style.transition = transitionStyle;
       if (bottomRightFabs) bottomRightFabs.style.transition = transitionStyle;
       if (locationDot) locationDot.style.transition = transitionStyle;
+      if (mapWatermark) mapWatermark.style.transition = transitionStyle;
 
       const deltaY = currentTranslateY - initialTranslateY;
       let shouldExpand = false;
@@ -143,7 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('mousemove', onDragMove);
     window.addEventListener('mouseup', onDragEnd);
 
-    // Tombol Close pada Sheet Header
     if (btnClose) {
       btnClose.addEventListener('click', () => {
         bottomSheet.classList.remove('expanded');
@@ -152,7 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Update tinggi sheet saat ukuran layar di-resize
     window.addEventListener('resize', () => {
       const heights = getSheetHeights();
       MAX_TRANSLATE = heights.maxTranslate;
@@ -161,7 +164,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Cegah interupsi drag bottom-sheet saat scroll di dalam daftar toko
     const sheetContent = document.querySelector('.sheet-content');
     if (sheetContent) {
       sheetContent.addEventListener('touchstart', (e) => {
@@ -170,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 3. EFEK TOMBOL LOKASI SAYA (ANIMASI BOUNCE)
+  // 3. EFEK TOMBOL LOKASI SAYA
   if (btnMyLocation && locationDot) {
     btnMyLocation.addEventListener('click', () => {
       locationDot.style.transition = 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
@@ -182,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 4. CHIP KATEGORI (FILTER)
+  // 4. CHIP KATEGORI
   chips.forEach(chip => {
     chip.addEventListener('click', () => {
       chips.forEach(c => c.classList.remove('active'));
@@ -190,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 5. DRAG SCROLL MOUSE UNTUK PC/DESKTOP PADA ELEMEN HORIZONTAL
+  // 5. DRAG SCROLL MOUSE PADA PC/DESKTOP
   const makeHorizontalScrollable = (container) => {
     if (!container) return;
     let isDown = false;
@@ -227,16 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.photo-gallery').forEach(gallery => makeHorizontalScrollable(gallery));
   document.querySelectorAll('.store-actions').forEach(actions => makeHorizontalScrollable(actions));
 
-  // 6. BOTTOM NAVIGATION SWITCH
-  navItems.forEach(item => {
-    item.addEventListener('click', (e) => {
-      e.preventDefault();
-      navItems.forEach(i => i.classList.remove('active'));
-      item.classList.add('active');
-    });
-  });
-
-  // 7. PROTEKSI GAMBAR DARI TEKAN-TAHAN / DOWNLOAD / DRAG
+  // 6. PROTEKSI GAMBAR DARI TEKAN-TAHAN / DOWNLOAD / DRAG
   document.addEventListener('contextmenu', (e) => {
     if (e.target.tagName === 'IMG') {
       e.preventDefault();
