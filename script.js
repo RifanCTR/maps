@@ -1,4 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Matikan popup tekan-tahan & klik kanan khusus gambar
+document.addEventListener('contextmenu', (e) => {
+  if (e.target.tagName === 'IMG') {
+    e.preventDefault();
+  }
+});
+
+// Matikan fitur drag gambar bawaan browser
+document.addEventListener('dragstart', (e) => {
+  if (e.target.tagName === 'IMG') {
+    e.preventDefault();
+  }
+});
   
   // 1. ELEMEN SELEKTOR
   const bottomSheet = document.getElementById('bottomSheet');

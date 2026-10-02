@@ -630,3 +630,12 @@ html, body {
 .btn-pill span {
   pointer-events: none; /* Sentuhan jari langsung tembus ke tombol tanpa nyangkut di teks/ikon */
 }
+
+/* PROTEKSI SEMUA GAMBAR/IKON DARI DOWNLOAD & TEKAN-TAHAN */
+img {
+  -webkit-touch-callout: none !important; /* Matikan popup menu "Simpan Gambar" di Android & iOS */
+  -webkit-user-drag: none !important;     /* Matikan fitur seret/drag gambar */
+  user-select: none !important;            /* Matikan seleksi/sorot gambar */
+  -webkit-user-select: none !important;
+  pointer-events: none !important;        /* Bikin sentuhan jempol tembus langsung ke elemen induk */
+}
