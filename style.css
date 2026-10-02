@@ -54,11 +54,11 @@ html, body {
 
 .my-location-dot {
   position: absolute;
-  top: 60%;
-  left: 50%;
+  top: 73%;
+  left: 3%;
   transform: translate(-50%, -50%);
-  width: 36px;
-  height: 36px;
+  width: 120px;
+  height: 120px;
   z-index: 5;
   transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -244,13 +244,13 @@ html, body {
 }
 
 .btn-layer img {
-  width: 26px;
-  height: 26px;
+  width: 30px;
+  height: 30px;
 }
 
 .bottom-right-fabs {
   position: absolute;
-  bottom: 125px;
+  bottom: 145px;
   right: 14px;
   display: flex;
   flex-direction: column;
@@ -260,25 +260,25 @@ html, body {
 }
 
 .btn-my-location {
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
   background: #ffffff;
 }
 
 .btn-my-location img {
-  width: 28px;
-  height: 28px;
+  width: 50px;
+  height: 50px;
 }
 
 .btn-direction {
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
   background: #006a6f;
 }
 
 .btn-direction img {
-  width: 26px;
-  height: 26px;
+  width: 40px;
+  height: 40px;
 }
 
 /* BOTTOM SHEET RESPONSIF (DINAMIS SAMA TINGGI LAYAR) */
