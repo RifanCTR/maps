@@ -540,7 +540,7 @@ html, body {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-/* BOTTOM NAVIGATION BAR */
+/* BOTTOM NAVIGATION BAR (FIX BISA DITEKAN) */
 .bottom-nav {
   position: absolute;
   bottom: 0;
@@ -552,8 +552,9 @@ html, body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  z-index: 8;
+  z-index: 99 !important; /* Paling atas biar ga ketutup elemen lain */
   padding: 4px 0 6px 0;
+  pointer-events: auto !important;
 }
 
 .nav-item {
@@ -566,6 +567,7 @@ html, body {
   text-decoration: none;
   gap: 4px;
   flex: 1;
+  -webkit-tap-highlight-color: transparent; /* Hilangkan bayangan kotak di layar HP */
 }
 
 .nav-icon-wrapper {

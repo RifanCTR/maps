@@ -177,49 +177,52 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 3. PERPINDAHAN TAB NAVIGASI BAWAH (JELAJAHI, ANDA, KONTRIBUSI)
-  navItems.forEach((nav, index) => {
-    nav.addEventListener('click', (e) => {
-      e.preventDefault();
+ // 3. PERPINDAHAN TAB NAVIGASI BAWAH
+navItems.forEach((nav, index) => {
+  nav.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation(); // Mencegah bentrok sama gesture drag sheet
 
-      navItems.forEach(item => item.classList.remove('active'));
-      nav.classList.add('active');
+    // Ubah tampilan ikon aktif
+    navItems.forEach(item => item.classList.remove('active'));
+    nav.classList.add('active');
 
-      tabPages.forEach(page => page.classList.remove('active'));
+    // Sembunyikan semua tab
+    tabPages.forEach(page => page.classList.remove('active'));
 
-      const transitionStyle = 'transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease';
-      bottomSheet.style.transition = transitionStyle;
+    const transitionStyle = 'transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease';
+    bottomSheet.style.transition = transitionStyle;
 
-      if (index === 0) {
-        // TAB JELAJAHI
-        document.getElementById('tabJelajahi').classList.add('active');
-        if (sheetTitleText) sheetTitleText.textContent = 'Trending di Maps';
-        if (topOverlay) topOverlay.style.opacity = '1';
-        if (floatingButtons) floatingButtons.style.opacity = '1';
-        
-        bottomSheet.classList.remove('expanded');
-        setSheetPosition(MAX_TRANSLATE);
-      } else if (index === 1) {
-        // TAB ANDA
-        document.getElementById('tabAnda').classList.add('active');
-        if (sheetTitleText) sheetTitleText.textContent = 'Anda';
-        if (topOverlay) topOverlay.style.opacity = '0';
-        if (floatingButtons) floatingButtons.style.opacity = '0';
-        
-        bottomSheet.classList.add('expanded');
-        setSheetPosition(MIN_TRANSLATE);
-      } else if (index === 2) {
-        // TAB KONTRIBUSI
-        document.getElementById('tabKontribusi').classList.add('active');
-        if (sheetTitleText) sheetTitleText.textContent = 'Kontribusi';
-        if (topOverlay) topOverlay.style.opacity = '0';
-        if (floatingButtons) floatingButtons.style.opacity = '0';
-        
-        bottomSheet.classList.add('expanded');
-        setSheetPosition(MIN_TRANSLATE);
-      }
-    });
+    if (index === 0) {
+      // TAB JELAJAHI
+      document.getElementById('tabJelajahi').classList.add('active');
+      if (sheetTitleText) sheetTitleText.textContent = 'Trending di Maps';
+      if (topOverlay) topOverlay.style.opacity = '1';
+      if (floatingButtons) floatingButtons.style.opacity = '1';
+      
+      bottomSheet.classList.remove('expanded');
+      setSheetPosition(MAX_TRANSLATE);
+    } else if (index === 1) {
+      // TAB ANDA
+      document.getElementById('tabAnda').classList.add('active');
+      if (sheetTitleText) sheetTitleText.textContent = 'Anda';
+      if (topOverlay) topOverlay.style.opacity = '0';
+      if (floatingButtons) floatingButtons.style.opacity = '0';
+      
+      bottomSheet.classList.add('expanded');
+      setSheetPosition(MIN_TRANSLATE);
+    } else if (index === 2) {
+      // TAB KONTRIBUSI
+      document.getElementById('tabKontribusi').classList.add('active');
+      if (sheetTitleText) sheetTitleText.textContent = 'Kontribusi';
+      if (topOverlay) topOverlay.style.opacity = '0';
+      if (floatingButtons) floatingButtons.style.opacity = '0';
+      
+      bottomSheet.classList.add('expanded');
+      setSheetPosition(MIN_TRANSLATE);
+    }
   });
+});
 
   // 4. EFEK TOMBOL LOKASI SAYA
   if (btnMyLocation && locationDot) {
